@@ -1,5 +1,5 @@
 # fine-tuning-for-rapid-soh-estimation
-This repository contains the Python scripts and processed data required to recreate the results and figures presented in the paper: “Fine-tuning for rapid capacity estimation of lithium-ion batteries” ($\textcolor{red}{\text{DOI will be provided soon}}$)
+This repository contains the Python scripts and processed data required to recreate the results and figures presented in the paper: “Fine-tuning for rapid capacity estimation of lithium-ion batteries” ([10.1016/j.ensm.2025.104425](https://doi.org/10.1016/j.ensm.2025.104425)).
 
 *Questions pertaining to the scripts and data provided in this repository can be directed to Ben Nowacki (benjamin.nowacki@uconn.edu)*
 
@@ -23,12 +23,13 @@ Benjamin Nowacki $^{1}$, Thomas Schmitt $^{2}$, Phillip Aquino $^{3}$, Chao Hu $
 
 The widespread adoption of large-scale battery-powered technologies, such as electric vehicles and renewable energy storage systems, has led to growing interest in assessing their remaining usability after years of operation.
 As these systems age, state-of-health estimation becomes crucial for ensuring reliability and safety, and for extending life through second-use applications.
-However, current methods -- spanning physics-based, empirical, and data-driven approaches -- face challenges, including insufficient labeled data, high resource costs, and poor generalizability across diverse usage conditions. 
+However, current methods \textemdash\ spanning physics-based, empirical, and data-driven approaches \textemdash\ face challenges, including insufficient labeled data, high resource costs, and poor generalizability across diverse usage conditions. 
 Data-driven models, in particular, struggle to extrapolate beyond their training domain, limiting their applicability in real-world scenarios.
-This work develops a fine-tuning framework to address these challenges, enabling rapid capacity estimation using short-duration ($\leq100$ seconds) features. 
-Tested on two battery chemistries (LFP/Gr and NMC/Gr), the fine-tuned model achieves average mean-absolute-percent-errors of $2.592\%$ and $3.094\%$ on datasets collected from the respective chemistries. 
-Compared to two baseline approaches, direct-transfer and target-only modeling, fine-tuning achieves a $25\%$ reduction in estimation error in the target domain, on average.
-Domain differences are quantified using statistical measures such as Kullback-Leibler divergence and maximum mean discrepancy, which are shown to correlate with fine-tuning performance, offering insights into domain compatibility.
+This work develops a fine-tuning framework to address these challenges, enabling rapid capacity estimation using short-duration ($\leq100$ s) features. 
+Tested on two battery chemistries (LFP/Gr and NMC/Gr), the fine-tuned model achieves average mean-absolute-percent-errors of 2.592\% and 3.094\% on datasets collected from the respective chemistries. 
+Compared to two baseline approaches, direct-transfer and target-only modeling, fine-tuning achieves a 25\% reduction in estimation error in the target domain, on average.
+Domain differences are quantified using statistical measures such as Kullback--Leibler divergence and maximum mean discrepancy. 
+These measures are found to correlate with fine-tuning performance, offering insights into domain compatibility.
 This study also analyzes the impact of feature selection, hyper-parameter tuning, and labeled data availability on fine-tuning efficacy, providing practical guidelines for real-world applications.
 
 
@@ -36,24 +37,24 @@ This study also analyzes the impact of feature selection, hyper-parameter tuning
 ## Repository Structure
 
 ```
-|- fine-tuning-for-rapid-soh-estimation/
-    |- notebooks/ 
-    |- processed_data/
-        |- UConn-ILCC-LFP/
-        |- UConn-ILCC-NMC/
-    |- results/
-    |- scripts/
-        |- config.py
-        |- data_processing/
-            |- common_methods.py
-            |- postprocessing.py
-        |- modeling/
-            |- common_methods.py
-            |- fine_tuning.py
-    |- spreadsheets/
-    |- environment.yml
-    |- LICENSE
-    |- README.md
+fine-tuning-for-rapid-soh-estimation/
+├── notebooks/ 
+├── processed_data/
+│    ├── UConn-ILCC-LFP/
+│    └── UConn-ILCC-NMC/
+├── results/
+├── scripts/
+│    ├── config.py
+│    ├── data_processing/
+│    │   ├── common_methods.py
+│    │   └── postprocessing.py
+│    └── modeling/
+│        ├── common_methods.py
+│        └── fine_tuning.py
+├── spreadsheets/
+├── environment.yml
+├── LICENSE
+└── README.md
 ```
 
 
@@ -106,5 +107,5 @@ This directory contains saved results from several analsyses performed. Files ar
 
 ### `spreadsheets/`
 
-This directory contains two spreadsheets: 'Cell Test Tracker.xlsx' and 'V vs SOC Data.csv'. The former provides a simple mapping between cell ID, tester details, and cycling conditions for both datasets. The latter is an interpolated lookup table of cell terminal voltage and state-of-charge (defined with coulomb counting) on LFP/Gr and NMC/Gr cells during a 1C and C/30 CC-CV charges.
+This directory contains two spreadsheets: `Cell Test Tracker.xlsx` and `V vs SOC Data.csv`. The former provides a simple mapping between cell ID, tester details, and cycling conditions for both datasets. The latter is an interpolated lookup table of cell terminal voltage and state-of-charge (defined with coulomb counting) on LFP/Gr and NMC/Gr cells during a 1C and C/30 CC-CV charges.
 
